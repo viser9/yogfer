@@ -88,7 +88,7 @@ export default function MyForm() {
           });
           setTimeout(() => {
             router.push("/student-form");
-          }, 3000);
+          }, 2000);
         } catch (err) {
           console.log(err);
         }

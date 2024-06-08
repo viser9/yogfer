@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, Suspense } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
@@ -32,7 +32,7 @@ import {
 } from "firebase/storage";
 import { storage } from "@/firebase.config";
 import { useRouter } from "next/navigation";
-import NextNProgress from "nextjs-progressbar";
+import LoadingComponent from '../../components/timeLoader'
 
 export default function SignupFormDemo() {
   const router = useRouter();
@@ -243,7 +243,7 @@ export default function SignupFormDemo() {
 
   return (
     <>
-      <NextNProgress />
+      <Suspense fallback={<LoadingComponent/>}>
       <div className="flex justify-center items-center sm:h-full m-5 sm:m-0">
         <div className="max-w-md w-full mx-auto rounded-2xl md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-gradient-to-b dark:from-neutral-950 dark:to-slate-700">
           <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
@@ -482,6 +482,7 @@ export default function SignupFormDemo() {
         </div>
         <Toaster />
       </div>
+        </Suspense>
     </>
   );
 }
